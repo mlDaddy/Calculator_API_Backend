@@ -17,5 +17,5 @@
         }
     ],
     "volumes": [],
-    "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole"
+    "executionRoleArn": ""
 }
