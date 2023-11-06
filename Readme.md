@@ -117,6 +117,7 @@ git clone https://github.com/mlDaddy/Calculator_API_Backend.git
 - Clone github repo
 - Start Django app in a manner similar to the one used previously on local machine.
 - Test using Postman (You may have to change the urls in previousely imported json file)
+- Make sure you turn off your EC2 instance once you are done to avoid billing.
 
 # Deployment using Docker
 - Installing Docker on Ubuntu (Local or EC2 wherever you are trying to Deploy your api)
@@ -161,3 +162,12 @@ git clone https://github.com/mlDaddy/Calculator_API_Backend.git
     ```
     This command runs a container named calculator_app_container based on the calculator_app image, exposing the Django application on port 8000. You will see 'Watching for file changes with StatReloader' from django server on your terminal.
 - Access Your API using the previousely defined urls and test them using Postman as done earlier.
+
+# Continuous Deployment (CD) on EC2 using Github Actions
+- sudo snap install aws-cli
+- create IAM user
+- aws configure (using your IAM keys)
+- store IAM keys in github actions secrets
+- aws ecr create-repository --repository-name calculator_app --region ap-south-1
+- Create a cluster calculator_app
+- aws ecs register-task-definition --generate-cli-skeleton > ECS_TASK_DEFINITION.json
