@@ -1,3 +1,6 @@
+# Beginner Django API using the Django REST framework
+This repo contains a very basic Django API using the Django REST framework with four endpoints (ADD, SUB, MUL, DIV) that support both GET and PUT requests.
+
 # Environement Setup
 - conda create -n django_tutorial python=3.7
 - conda activate django_tutorial
