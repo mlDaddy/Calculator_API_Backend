@@ -2,6 +2,10 @@
 - conda create -n django_tutorial python=3.7
 - conda activate django_tutorial
 - pip install Django djangorestframework
+- or simply install requirements.txt file
+    ```
+    conda install --file requirements.txt
+    ```
 
 # Clone this Repo
 ```
@@ -96,10 +100,12 @@ git clone https://github.com/mlDaddy/Calculator_API_Backend.git
 - Test each call one by one (total 8 calls)
 
 # Deployment on AWS/EC2
-- Setup your EC2 instance with following settings
-    - Machine Type: Any Free tier
-    - Image: Ubuntu Free tier
-    - Storage: Any Free tier
+- Launch your EC2 instance with following settings (leave everything else as default)
+    - Amazon Machine Image (AMI): Ubuntu Server
+    - Instance type: t2.micro
+    - Allow SSH traffic from: Anywhere
+    - Allow HTTPS traffic from the internet: Yes
+    - Allow HTTP traffic from the internet: Yes
 - Update the public IP of your EC2 instance in calculator_project/settings.py file
     ```
     ALLOWED_HOSTS = ['127.0.0.1:8000/', 'localhost:8000']
@@ -109,6 +115,46 @@ git clone https://github.com/mlDaddy/Calculator_API_Backend.git
 - Start Django app in a manner similar to the one used previously on local machine.
 - Test using Postman (You may have to change the urls in previousely imported json file)
 
-
-
-
+# Deployment using Docker
+- Installing Docker on Ubuntu (Local or EC2 wherever you are trying to Deploy your api)
+    - Update Package Lists by opening a terminal and ensuring your package lists are up-to-date:
+    ```
+    sudo apt update
+    ```
+    - Install the necessary packages to allow apt to use a repository over HTTPS:
+    ```
+    sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+    ``` 
+    - Add Docker's official GPG key:
+    ``` 
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    ``` 
+    - Add the Docker repository to your system:
+    ``` 
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ``` 
+    - Install Docker from the Docker repository:
+    ``` 
+    sudo apt update
+    sudo apt install -y docker-ce docker-ce-cli containerd.io
+    ```
+    - Start the Docker service and enable it to start on boot:
+    ``` 
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    ``` 
+    - Verify that Docker is installed and running by running the following command. You should see the Docker version information.
+    ``` 
+    sudo docker --version
+    ```
+# Deploying Your Django API with Docker
+- Create Dockerfile
+- Build the Docker image using the docker build command.
+    ```
+    sudo docker build -t calculator_app .
+- Run a Docker container based on the image you built. Map the host port to the container's port, and provide any environment variables as needed:
+    ```
+    sudo docker run -p 8000:8000 --name calculator_app_container calculator_app
+    ```
+    This command runs a container named calculator_app_container based on the calculator_app image, exposing the Django application on port 8000. You will see 'Watching for file changes with StatReloader' from django server on your terminal.
+- Access Your API using the previousely defined urls and test them using Postman as done earlier.
