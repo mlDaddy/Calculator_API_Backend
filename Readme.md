@@ -171,3 +171,5 @@ git clone https://github.com/mlDaddy/Calculator_API_Backend.git
 - aws ecr create-repository --repository-name calculator_app --region ap-south-1
 - Create a cluster calculator_app
 - aws ecs register-task-definition --generate-cli-skeleton > ECS_TASK_DEFINITION.json
+- update this json file.
+- check if json file is correctly configured using aws ecs register-task-definition ECS_TASK_DEFINITION.json
