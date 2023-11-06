@@ -12,7 +12,7 @@
 git clone https://github.com/mlDaddy/Calculator_API_Backend.git
 ```
 
-# Initialize Django App from Scratch (If not interestedin cloning)
+# Initialize Django App from Scratch (If not interested in cloning)
 - mkdir Calculator_API_Backend
 - cd Calculator_API_Backend
 - django-admin startproject calculator_project
