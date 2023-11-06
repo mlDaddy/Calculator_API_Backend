@@ -3,6 +3,11 @@
 - conda activate django_tutorial
 - pip install Django djangorestframework
 
+# Clone this Repo
+```
+git clone https://github.com/mlDaddy/Calculator_API_Backend.git
+```
+
 # Initialize Django App from Scratch
 - mkdir Calculator_API_Backend
 - cd Calculator_API_Backend
